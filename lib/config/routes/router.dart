@@ -7,7 +7,12 @@ class AppRouter {
     routes: <GoRoute>[
       GoRoute(
         path: AppRoute.home,
-        builder: (_, GoRouterState state) => MyHomePage(title: 'muvees'),
+        builder: (_, GoRouterState state) {
+          final MyHomePageParams arguments = state.extra is MyHomePageParams
+              ? state.extra as MyHomePageParams
+              : const MyHomePageParams();
+          return MyHomePage(params: arguments);
+        },
       ),
     ],
   );
