@@ -38,12 +38,13 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.3.0
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
   json_serializable: ^6.5.2
   pretty_dio_logger: ^1.1.1
   retrofit_generator: ^4.2.0
+  sznm_lints: ^1.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
