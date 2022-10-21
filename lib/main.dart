@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:muvees/config/routes/routes.dart';
+import 'package:muvees/config/routes/router.dart';
 
 void main() {
   runApp(const MyApp());
