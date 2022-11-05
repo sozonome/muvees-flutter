@@ -39,6 +39,7 @@ dependencies:
   google_fonts: ^3.0.1
   json_annotation: ^4.7.0
   loggy: ^2.0.1+1
+  pretty_dio_logger: ^1.1.1
   retrofit: ^3.3.1
   riverpod_annotation: ^1.0.6
 
@@ -49,7 +50,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   json_serializable: ^6.5.2
-  pretty_dio_logger: ^1.1.1
   retrofit_generator: ^4.2.0
   riverpod_generator: ^1.0.6
   sznm_lints: ^1.0.1
