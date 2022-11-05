@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-abstract class PageModel<T> extends StateNotifier<T> {
-  PageModel(T state) : super(state);
+abstract class PageStateNotifier<T> extends StateNotifier<T> {
+  PageStateNotifier(T state) : super(state);
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;

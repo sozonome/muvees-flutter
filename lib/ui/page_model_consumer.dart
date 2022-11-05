@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:muvees/core/page_models/page_model.dart';
 
-class PageModelConsumer<T extends PageModel<P>, P>
+class PageModelConsumer<T extends PageStateNotifier<P>, P>
     extends ConsumerStatefulWidget {
   const PageModelConsumer({
     required this.builder,
@@ -24,20 +24,19 @@ class PageModelConsumer<T extends PageModel<P>, P>
       _PageModelConsumerState<T, P>();
 }
 
-class _PageModelConsumerState<T extends PageModel<P>, P>
-    extends ConsumerState<PageModelConsumer<T, P>> with RouteAware {
+class _PageModelConsumerState<T extends PageStateNotifier<P>, P>
+    extends ConsumerState<PageModelConsumer<T, P>> {
   @override
   void initState() {
+    super.initState();
     final T notifier = ref.read(widget.pageModel.notifier);
     widget.onModelReady?.call(notifier);
-
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     final P state = ref.watch(widget.pageModel);
-    final T notifier = ref.watch(widget.pageModel.notifier);
+    final T notifier = ref.read(widget.pageModel.notifier);
 
     return widget.builder(
       context,
