@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:muvees/core/config/routes/routes.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:muvees/core/models/api/tmdb/movie/movie_list.dart';
+import 'package:muvees/core/page_models/home_page_model.dart';
+import 'package:muvees/core/services/api/tmdb/fetchers.dart';
+import 'package:muvees/ui/page_model_consumer.dart';
 
 class MyHomePageParams {
   const MyHomePageParams({
@@ -12,7 +15,16 @@ class MyHomePageParams {
   final bool isDeepLink;
 }
 
-class MyHomePage extends StatefulWidget {
+final StateNotifierProvider<HomePageModel, HomePageState> homePageModel =
+    StateNotifierProvider<HomePageModel, HomePageState>(
+  (StateNotifierProviderRef<HomePageModel, HomePageState> ref) {
+    return HomePageModel(
+      movieApi: ref.read(movieApiProvider),
+    );
+  },
+);
+
+class MyHomePage extends StatelessWidget {
   const MyHomePage({
     required this.params,
     Key? key,
@@ -21,51 +33,68 @@ class MyHomePage extends StatefulWidget {
   final MyHomePageParams params;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-    _navigate();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.params.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    return PageModelConsumer<HomePageModel, HomePageState>(
+      pageModel: homePageModel,
+      onModelReady: (HomePageModel model) async {
+        await model.initPageModel();
+      },
+      builder: (
+        BuildContext context,
+        HomePageState state,
+        HomePageModel notifier,
+      ) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('muvees'),
+          ),
+          body: notifier.isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text('Text'),
+                      Expanded(
+                        child: GridView.count(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          shrinkWrap: true,
+                          children: List<Widget>.generate(
+                            state.items.length,
+                            (int index) {
+                              return Container(
+                                padding: const EdgeInsets.all(4),
+                                child: Text(
+                                  state.items[index].title,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+        );
+      },
     );
   }
 
-  void _navigate() {
-    context.go(
-      AppRoute.home,
-      extra: const MyHomePageParams(isDeepLink: false, title: 'Hello'),
-    );
-  }
+  // void _navigate({
+  //   required BuildContext context,
+  // }) {
+  //   context.go(
+  //     AppRoute.home,
+  //     extra: const MyHomePageParams(isDeepLink: false, title: 'Hello'),
+  //   );
+  // }
 }
