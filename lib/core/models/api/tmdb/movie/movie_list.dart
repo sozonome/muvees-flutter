@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:muvees/core/models/api/tmdb/tmdb_list_response.dart';
 
 part 'movie_list.g.dart';
 
@@ -21,6 +22,28 @@ class MovieListParams {
   List<String>? withGenres;
 
   Map<String, dynamic> toJson() => _$MovieListParamsToJson(this);
+}
+
+@JsonSerializable()
+class MovieListResponse extends TmdbListResponse {
+  MovieListResponse({
+    required int page,
+    required int totalResults,
+    required int totalPages,
+    required this.results,
+  }) : super(
+          page: page,
+          totalResults: totalResults,
+          totalPages: totalPages,
+        );
+
+  factory MovieListResponse.fromJson(Map<String, dynamic> json) =>
+      _$MovieListResponseFromJson(json);
+
+  final List<MovieListItemType> results;
+
+  @override
+  Map<String, dynamic> toJson() => _$MovieListResponseToJson(this);
 }
 
 @JsonSerializable()
