@@ -5,8 +5,8 @@ import 'package:muvees/core/page_models/page_model.dart';
 class PageModelConsumer<T extends PageStateNotifier<P>, P>
     extends ConsumerStatefulWidget {
   const PageModelConsumer({
-    required this.builder,
     required this.pageModel,
+    required this.builder,
     this.onModelReady,
     Key? key,
   }) : super(key: key);
@@ -17,10 +17,10 @@ class PageModelConsumer<T extends PageStateNotifier<P>, P>
     T notifier,
   ) builder;
   final StateNotifierProvider<T, P> pageModel;
-  final void Function(T)? onModelReady;
+  final void Function(T model)? onModelReady;
 
   @override
-  _PageModelConsumerState<T, P> createState() =>
+  ConsumerState<PageModelConsumer<T, P>> createState() =>
       _PageModelConsumerState<T, P>();
 }
 

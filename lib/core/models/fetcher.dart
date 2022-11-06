@@ -5,9 +5,11 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 class Fetcher with UiLoggy {
   Fetcher({
     this.options,
+    this.interceptors = const <Interceptor>[],
   });
 
   final BaseOptions? options;
+  final List<Interceptor> interceptors;
 
   Dio get dioFetcher {
     return Dio(options)
@@ -16,11 +18,9 @@ class Fetcher with UiLoggy {
           PrettyDioLogger(
             requestHeader: true,
             requestBody: true,
-            responseBody: true,
-            error: true,
-            request: true,
             responseHeader: true,
-          )
+          ),
+          ...interceptors,
         ],
       );
   }

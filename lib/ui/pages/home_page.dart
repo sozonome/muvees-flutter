@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:muvees/core/config/routes/routes.dart';
 import 'package:muvees/core/models/api/tmdb/movie/movie_list.dart';
 import 'package:muvees/core/page_models/home_page_model.dart';
 import 'package:muvees/core/services/api/tmdb/fetchers.dart';
 import 'package:muvees/ui/page_model_consumer.dart';
+import 'package:muvees/ui/pages/movie_detail_page.dart';
+import 'package:muvees/ui/widgets/shared/poster_card.dart';
 
 class MyHomePageParams {
   const MyHomePageParams({
@@ -52,49 +56,80 @@ class MyHomePage extends StatelessWidget {
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : Container(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text('Text'),
-                      Expanded(
-                        child: GridView.count(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
-                          shrinkWrap: true,
-                          children: List<Widget>.generate(
-                            state.items.length,
-                            (int index) {
-                              return Container(
-                                padding: const EdgeInsets.all(4),
-                                child: Text(
-                                  state.items[index].title,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      child: _MovieGrid(
+                        movies: state.items,
+                        onTapMovie: (int id) => _openMovieDetail(
+                          context: context,
+                          id: id,
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    )
+                  ],
                 ),
         );
       },
     );
   }
 
-  // void _navigate({
-  //   required BuildContext context,
-  // }) {
-  //   context.go(
-  //     AppRoute.home,
-  //     extra: const MyHomePageParams(isDeepLink: false, title: 'Hello'),
-  //   );
-  // }
+  void _openMovieDetail({
+    required BuildContext context,
+    required int id,
+  }) {
+    context.pushNamed(
+      AppRoute.movieDetail,
+      extra: MovieDetailPageParams(id: id),
+    );
+  }
+}
+
+class _MovieGrid extends StatelessWidget {
+  const _MovieGrid({
+    required this.movies,
+    required this.onTapMovie,
+    Key? key,
+  }) : super(key: key);
+
+  final List<MovieListItemType> movies;
+  final void Function(int id) onTapMovie;
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      padding: const EdgeInsets.all(16),
+      crossAxisCount: 2,
+      mainAxisSpacing: 16,
+      crossAxisSpacing: 16,
+      childAspectRatio: 3 / 4,
+      children: List<Widget>.generate(
+        movies.length,
+        (int index) {
+          return GestureDetector(
+            onTap: () => onTapMovie(movies[index].id),
+            child: _MovieCard(movie: movies[index]),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _MovieCard extends StatelessWidget {
+  const _MovieCard({
+    required this.movie,
+    Key? key,
+  }) : super(key: key);
+
+  final MovieListItemType movie;
+
+  @override
+  Widget build(BuildContext context) {
+    return PosterCard(
+      name: movie.title,
+      imageUrl: movie.posterPath,
+    );
+  }
 }
