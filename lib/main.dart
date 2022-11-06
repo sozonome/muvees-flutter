@@ -33,6 +33,15 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
         textTheme: GoogleFonts.outfitTextTheme(textTheme),
       ),
+      // darkTheme: ThemeData(
+      //   brightness: Brightness.dark,
+      //   primaryColor: Colors.black,
+      //   appBarTheme: AppBarTheme(
+      //     color: Colors.teal.shade800,
+      //   ),
+      //   primarySwatch: Colors.teal,
+      //   textTheme: GoogleFonts.outfitTextTheme(textTheme),
+      // ),
     );
   }
 }

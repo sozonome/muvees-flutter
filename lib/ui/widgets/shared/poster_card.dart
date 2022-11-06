@@ -1,8 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:muvees/ui/widgets/shared/poster_image.dart';
 
 const double _borderRadius = 12;
-const String _tmdbImgHostUrl = 'https://image.tmdb.org/t/p/w500';
 
 class PosterCard extends StatelessWidget {
   const PosterCard({
@@ -32,15 +31,7 @@ class PosterCard extends StatelessWidget {
         children: <Widget>[
           if (image != null)
             Positioned.fill(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(_borderRadius),
-                child: FittedBox(
-                  fit: BoxFit.cover,
-                  child: CachedNetworkImage(
-                    imageUrl: '$_tmdbImgHostUrl$image',
-                  ),
-                ),
-              ),
+              child: PosterImage(imagePath: image),
             ),
           Center(
             child: Text(

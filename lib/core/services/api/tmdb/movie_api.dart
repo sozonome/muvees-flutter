@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:muvees/core/models/api/tmdb/movie/movie_detail.dart';
 import 'package:muvees/core/models/api/tmdb/movie/movie_list.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -12,5 +13,10 @@ abstract class MovieApi {
   Future<HttpResponse<MovieListResponse>> getMovieListBySection({
     @Path() required String section,
     @Queries() required MovieListParams params,
+  });
+
+  @GET('/movie/{movieId}')
+  Future<HttpResponse<MovieDetailResponse>> getMovieDetail({
+    @Path() required int movieId,
   });
 }
