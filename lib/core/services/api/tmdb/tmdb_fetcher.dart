@@ -1,6 +1,17 @@
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:muvees/core/constants/env.dart';
 import 'package:muvees/core/models/fetcher.dart';
+
+final CacheOptions options = CacheOptions(
+  store: MemCacheStore(),
+  policy: CachePolicy.request,
+  hitCacheOnErrorExcept: <int>[401, 403],
+  maxStale: const Duration(days: 1),
+  priority: CachePriority.normal,
+  keyBuilder: CacheOptions.defaultCacheKeyBuilder,
+  allowPostMethod: false,
+);
 
 Dio tmdbFetcher = Fetcher(
   options: BaseOptions(
@@ -9,4 +20,5 @@ Dio tmdbFetcher = Fetcher(
       'api_key': Env.tmdbApiKey,
     },
   ),
+  interceptors: <Interceptor>[DioCacheInterceptor(options: options)],
 ).dioFetcher;

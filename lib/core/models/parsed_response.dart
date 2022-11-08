@@ -7,5 +7,6 @@ extension ParsedResponse<T> on HttpResponse<T> {
         HttpStatus.ok,
         HttpStatus.created,
         HttpStatus.accepted,
+        HttpStatus.notModified,
       ].contains(response.statusCode);
 }

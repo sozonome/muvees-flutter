@@ -31,6 +31,7 @@ dependencies:
   cached_network_image: ^3.2.2
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
+  dio_cache_interceptor: ^3.3.1
   envied: ^0.2.3
   flutter:
     sdk: flutter
