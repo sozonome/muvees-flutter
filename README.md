@@ -1,4 +1,4 @@
-<img src="https://og.sznm.dev/api/generate?heading=muvees_flutter&text=TMDB flutter app&template=color&center=true&height=320" />
+<img src="https://og.sznm.dev/api/generate?heading=muvees_flutter&text=TMDB%20flutter%20app&template=color&center=true&height=320" />
 
 
 powered by:
