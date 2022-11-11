@@ -1,4 +1,4 @@
-package com.example.muvees
+package dev.sznm.muvees.mobile
 
 import io.flutter.embedding.android.FlutterActivity
 

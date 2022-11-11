@@ -1,7 +1,7 @@
 <img src="https://og.sznm.dev/api/generate?heading=muvees_flutter&text=TMDB%20flutter%20app&template=color&center=true&height=320" />
 
-
 powered by:
+
 - **go_router**
 - riverpod
 - **dio_cache_interceptor**
@@ -10,6 +10,11 @@ powered by:
 ## Commands
 
 1. build_runner: `fvm flutter pub run build_runner build --delete-conflicting-outputs`
+
+### Build Signed Android App (without Play Store)
+
+1. Make sure keystore and its properties file is available at the `/android` folder
+2. Then build the app using this command: `fvm flutter build apk --release`
 
 ## References
 
