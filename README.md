@@ -14,7 +14,7 @@ powered by:
 ### Build Signed Android App (without Play Store)
 
 1. Make sure keystore and its properties file is available at the `/android` folder
-2. Then build the app using this command: `fvm flutter build apk --release`
+2. Then build the app using this command: `fvm flutter build apk --release --split-per-abi`
 
 ## References
 
