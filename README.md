@@ -26,3 +26,4 @@ powered by:
   - https://pub.dev/packages/envied
 - https://codewithandrea.com/articles/flutter-api-keys-dart-define-env-files/
 - https://app.quicktype.io/
+- https://stackoverflow.com/questions/56824557/what-is-the-difference-between-armeabi-v7a-arm64-v8a-x86
