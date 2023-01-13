@@ -30,16 +30,18 @@ class MyApp extends StatelessWidget {
       title: 'muvees',
       routerConfig: AppRouter.router,
       theme: ThemeData(
+        useMaterial3: true,
         primarySwatch: Colors.teal,
         textTheme: GoogleFonts.outfitTextTheme(textTheme),
       ),
       // darkTheme: ThemeData(
+      //   useMaterial3: true,
+      //   primarySwatch: Colors.teal,
       //   brightness: Brightness.dark,
       //   primaryColor: Colors.black,
       //   appBarTheme: AppBarTheme(
-      //     color: Colors.teal.shade800,
+      //     color: Colors.teal.shade900,
       //   ),
-      //   primarySwatch: Colors.teal,
       //   textTheme: GoogleFonts.outfitTextTheme(textTheme),
       // ),
     );
