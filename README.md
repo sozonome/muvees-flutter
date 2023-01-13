@@ -17,6 +17,10 @@ https://user-images.githubusercontent.com/17046154/211236202-305e8b48-0d55-4165-
 
 1. build_runner: `fvm flutter pub run build_runner build --delete-conflicting-outputs`
 
+### Updating Launcher icon
+
+1. Run `fvm flutter pub run flutter_launcher_icons`
+
 ### Build Signed Android App (without Play Store)
 
 1. Make sure keystore and its properties file is available at the `/android` folder
