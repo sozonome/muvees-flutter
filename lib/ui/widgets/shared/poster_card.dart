@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:muvees/ui/widgets/shared/poster_image.dart';
 
-const double _borderRadius = 12;
+const double _borderRadius = 24;
 
 class PosterCard extends StatelessWidget {
   const PosterCard({

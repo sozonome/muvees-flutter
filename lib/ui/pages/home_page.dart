@@ -101,8 +101,8 @@ class _MovieGrid extends StatelessWidget {
     return GridView.count(
       padding: const EdgeInsets.all(16),
       crossAxisCount: 2,
-      mainAxisSpacing: 16,
-      crossAxisSpacing: 16,
+      mainAxisSpacing: 24,
+      crossAxisSpacing: 24,
       childAspectRatio: 3 / 4,
       children: List<Widget>.generate(
         movies.length,

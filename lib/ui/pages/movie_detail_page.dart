@@ -99,68 +99,105 @@ class _MovieDetailContent extends StatelessWidget {
     }
 
     final String? posterPath = movie.posterPath;
+    final String? backdropPath = movie.backdropPath;
+    final String? tagline = movie.tagline;
 
     return SingleChildScrollView(
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            if (posterPath != null)
-              SizedBox(
-                width: 250,
-                child: PosterImage(
-                  imagePath: posterPath,
-                ),
-              ),
-            const SizedBox(height: 16),
-            Text(
-              movie.title,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
-              ),
+      child: Column(
+        children: <Widget>[
+          if (backdropPath != null)
+            PosterImage(
+              imagePath: backdropPath,
+              isRounded: false,
             ),
-            const SizedBox(height: 16),
-            Text(
-              'Released: ${DateFormat('dd MMMM yyyy').format(movie.releaseDate.toLocal())}',
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.black87,
-                height: 1.5,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: movie.genres
-                  .map(
-                    (Genre genre) => Container(
-                      padding: const EdgeInsets.only(right: 4),
-                      child: Chip(
-                        label: Text(
-                          genre.name,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            color: Colors.black54,
-                            height: 1.5,
-                          ),
+          Container(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    if (posterPath != null)
+                      SizedBox(
+                        width: 120,
+                        child: PosterImage(
+                          imagePath: posterPath,
                         ),
                       ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            movie.title,
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.grey.shade800,
+                            ),
+                          ),
+                          if (tagline != null) ...<Widget>[
+                            const SizedBox(height: 6),
+                            Text(
+                              tagline,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.grey.shade600,
+                              ),
+                            ),
+                          ],
+                          const SizedBox(height: 8),
+                          Text(
+                            'Released: ${DateFormat('dd MMMM yyyy').format(movie.releaseDate.toLocal())}',
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.grey.shade600,
+                              height: 1.5,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: movie.genres
+                                  .map(
+                                    (Genre genre) => Container(
+                                      padding: const EdgeInsets.only(right: 4),
+                                      child: Chip(
+                                        label: Text(
+                                          genre.name,
+                                          style: const TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.black54,
+                                            height: 1.5,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  )
-                  .toList(),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                const SizedBox(height: 16),
+                Text(
+                  movie.overview,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.black54,
+                    height: 1.5,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 16),
-            Text(
-              movie.overview,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black54,
-                height: 1.5,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
