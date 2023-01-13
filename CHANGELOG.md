@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/sozonome/muvees-flutter/compare/v1.0.2...v1.1.0) (2023-01-13)
+
+
+### Features
+
+* update launcher icon ([738f56c](https://github.com/sozonome/muvees-flutter/commit/738f56c47f539c44657c412d40fea5d87adb8041))
+
 ### [1.0.2](https://github.com/sozonome/muvees-flutter/compare/v1.0.1...v1.0.2) (2023-01-13)
 
 ### [1.0.1](https://github.com/sozonome/muvees-flutter/compare/v1.0.0...v1.0.1) (2022-11-25)
