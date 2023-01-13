@@ -1,10 +1,12 @@
 import 'package:go_router/go_router.dart';
 import 'package:muvees/core/config/routes/routes.dart';
+import 'package:muvees/core/constants/navigator_key.dart';
 import 'package:muvees/ui/pages/home_page.dart';
 import 'package:muvees/ui/pages/movie_detail_page.dart';
 
 class AppRouter {
   static final GoRouter _router = GoRouter(
+    navigatorKey: navigatorKey,
     routes: <GoRoute>[
       GoRoute(
         name: AppRoute.home,

@@ -11,8 +11,6 @@ powered by:
 
 https://user-images.githubusercontent.com/17046154/211236202-305e8b48-0d55-4165-82b2-1bae35cef0e4.mp4
 
-
-
 ## Commands
 
 1. build_runner: `fvm flutter pub run build_runner build --delete-conflicting-outputs`
@@ -24,7 +22,9 @@ https://user-images.githubusercontent.com/17046154/211236202-305e8b48-0d55-4165-
 ### Build Signed Android App (without Play Store)
 
 1. Make sure keystore and its properties file is available at the `/android` folder
-2. Then build the app using this command: `fvm flutter build apk --release --split-per-abi`
+2. Then build the app using this command:
+   a. Release version: `fvm flutter build apk --release --split-per-abi`
+   b. Debug version: `fvm flutter build apk --debug --split-per-abi`
 
 ## References
 

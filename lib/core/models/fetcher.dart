@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:loggy/loggy.dart';
+import 'package:muvees/core/config/services/alice.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class Fetcher with UiLoggy {
@@ -20,6 +21,7 @@ class Fetcher with UiLoggy {
             requestBody: true,
             responseHeader: true,
           ),
+          aliceConfig.getDioInterceptor(),
           ...interceptors,
         ],
       );
