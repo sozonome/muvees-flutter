@@ -50,4 +50,6 @@ app.*.map.json
 
 # Json generated files
 *.g.dart
-.env*
+.env
+.env.local
+.env.production

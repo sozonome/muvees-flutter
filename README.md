@@ -11,15 +11,21 @@ powered by:
 
 https://user-images.githubusercontent.com/17046154/211236202-305e8b48-0d55-4165-82b2-1bae35cef0e4.mp4
 
-## Commands
+## Running Local
+
+Pre-Requisites:
+- Flutter 3 (recommend to use FVM)
+- .env file (see .env.example)
+
+### Commands
 
 1. build_runner: `fvm flutter pub run build_runner build --delete-conflicting-outputs`
 
-### Updating Launcher icon
+#### Updating Launcher icon
 
 1. Run `fvm flutter pub run flutter_launcher_icons`
 
-### Build Signed Android App (without Play Store)
+#### Build Signed Android App (without Play Store)
 
 1. Make sure keystore and its properties file is available at the `/android` folder
 2. Then build the app using this command:
