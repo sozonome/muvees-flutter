@@ -29,7 +29,7 @@ Pre-Requisites:
 
 1. Make sure keystore and its properties file is available at the `/android` folder
 2. Then build the app using this command:
-   a. Release version: `fvm flutter build apk --release --split-per-abi`
+   a. Release version: `fvm flutter build apk --release --obfuscate --split-per-abi`
    b. Debug version: `fvm flutter build apk --debug --split-per-abi`
 
 ## References
