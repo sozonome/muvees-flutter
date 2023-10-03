@@ -22,12 +22,13 @@ class AppRouter {
         name: AppRoute.movieDetail,
         path: AppRoute.movieDetail,
         builder: (_, GoRouterState state) {
-          final MovieDetailPageParams arguments = state.extra is MovieDetailPageParams
-              ? state.extra as MovieDetailPageParams
-              : const MovieDetailPageParams();
+          final MovieDetailPageParams arguments =
+              state.extra is MovieDetailPageParams
+                  ? state.extra as MovieDetailPageParams
+                  : const MovieDetailPageParams();
           return MovieDetailPage(params: arguments);
         },
-      )
+      ),
     ],
   );
 

@@ -67,7 +67,7 @@ class MyHomePage extends StatelessWidget {
                           id: id,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
         );

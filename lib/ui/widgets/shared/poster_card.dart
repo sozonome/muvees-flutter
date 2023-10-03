@@ -24,7 +24,7 @@ class PosterCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black54,
             blurRadius: 8,
-          )
+          ),
         ],
       ),
       child: Stack(
