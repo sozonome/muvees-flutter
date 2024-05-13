@@ -59,9 +59,35 @@ class MyHomePage extends StatelessWidget {
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 12,
+                      ),
+                      child: DropdownButton(
+                        value: state.movieSection,
+                        items: movieSections
+                            .map(
+                              (String item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item
+                                      .split('_')
+                                      .map((String item) =>
+                                          '${item[0].toUpperCase()}${item.substring(1)}')
+                                      .join(' '),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: notifier.setMovieSection,
+                        isExpanded: true,
+                      ),
+                    ),
                     Expanded(
                       child: _MovieGrid(
                         movies: state.items,
+                        onRefresh: notifier.fetchMovieList,
                         onTapMovie: (int id) => _openMovieDetail(
                           context: context,
                           id: id,
@@ -90,28 +116,33 @@ class _MovieGrid extends StatelessWidget {
   const _MovieGrid({
     required this.movies,
     required this.onTapMovie,
+    required this.onRefresh,
     Key? key,
   }) : super(key: key);
 
   final List<MovieListItemType> movies;
   final void Function(int id) onTapMovie;
+  final Future<void> Function() onRefresh;
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      padding: const EdgeInsets.all(16),
-      crossAxisCount: 2,
-      mainAxisSpacing: 24,
-      crossAxisSpacing: 24,
-      childAspectRatio: 3 / 4,
-      children: List<Widget>.generate(
-        movies.length,
-        (int index) {
-          return GestureDetector(
-            onTap: () => onTapMovie(movies[index].id),
-            child: _MovieCard(movie: movies[index]),
-          );
-        },
+    return RefreshIndicator(
+      onRefresh: onRefresh,
+      child: GridView.count(
+        padding: const EdgeInsets.all(16),
+        crossAxisCount: 2,
+        mainAxisSpacing: 24,
+        crossAxisSpacing: 24,
+        childAspectRatio: 3 / 4,
+        children: List<Widget>.generate(
+          movies.length,
+          (int index) {
+            return GestureDetector(
+              onTap: () => onTapMovie(movies[index].id),
+              child: _MovieCard(movie: movies[index]),
+            );
+          },
+        ),
       ),
     );
   }

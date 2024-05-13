@@ -100,3 +100,14 @@ class MovieListItemType {
 
   Map<String, dynamic> toJson() => _$MovieListItemTypeToJson(this);
 }
+
+@JsonEnum(valueField: 'key')
+enum MovieSection {
+  nowPlaying('now_playing'),
+  topRated('top_rated'),
+  popular('popular'),
+  upcoming('upcoming');
+
+  const MovieSection(this.key);
+  final String key;
+}

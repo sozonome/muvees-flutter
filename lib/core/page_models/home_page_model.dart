@@ -5,13 +5,31 @@ import 'package:muvees/core/page_models/page_model.dart';
 import 'package:muvees/core/services/api/tmdb/movie_api.dart';
 import 'package:retrofit/dio.dart';
 
+final List<String> movieSections = MovieSection.values
+    .map(
+      (MovieSection item) => item.key,
+    )
+    .toList();
+
 @immutable
 class HomePageState {
   const HomePageState({
     this.items = const <MovieListItemType>[],
+    this.movieSection = 'top_rated',
   });
 
   final List<MovieListItemType> items;
+  final String movieSection;
+
+  HomePageState copyWith({
+    List<MovieListItemType>? items,
+    String? movieSection,
+  }) {
+    return HomePageState(
+      items: items ?? this.items,
+      movieSection: movieSection ?? this.movieSection,
+    );
+  }
 }
 
 class HomePageModel extends PageStateNotifier<HomePageState> {
@@ -25,23 +43,30 @@ class HomePageModel extends PageStateNotifier<HomePageState> {
   @override
   Future<void> initPageModel() async {
     setIsLoading(true);
-    await _fetchMovieList();
+    await fetchMovieList();
     setIsLoading(false);
   }
 
-  Future<void> _fetchMovieList() async {
+  Future<void> fetchMovieList() async {
     final HttpResponse<MovieListResponse> result =
         await _movieApi.getMovieListBySection(
-      section: 'top_rated',
+      section: state.movieSection,
       params: MovieListParams(
         page: 1,
       ),
     );
 
     if (result.isSuccess) {
-      state = HomePageState(
+      state = state.copyWith(
         items: result.data.results,
       );
     }
+  }
+
+  Future<void> setMovieSection(String? movieSection) async {
+    state = state.copyWith(
+      movieSection: movieSection,
+    );
+    await fetchMovieList();
   }
 }
