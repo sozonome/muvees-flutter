@@ -46,10 +46,12 @@ app.*.map.json
 /android/app/release
 
 # FVM files
-.fvm/flutter_sdk
 
 # Json generated files
 *.g.dart
 .env
 .env.local
 .env.production
+
+# FVM Version Cache
+.fvm/
