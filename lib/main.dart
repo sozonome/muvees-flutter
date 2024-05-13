@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loggy/loggy.dart';
 import 'package:muvees/core/config/routes/router.dart';
 
-void main() {
+Future<void> main() async {
   GoogleFonts.config.allowRuntimeFetching = false;
   Loggy.initLoggy(
     logPrinter: StreamPrinter(
       const PrettyDeveloperPrinter(),
     ),
   );
+
+  // Lock Orientation to Portrait only
+  await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+    DeviceOrientation.portraitUp,
+  ]);
+
   runApp(
     const ProviderScope(
       child: MyApp(),
