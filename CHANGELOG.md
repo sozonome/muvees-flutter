@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/sozonome/muvees-flutter/compare/v1.1.1...v1.2.0) (2024-05-13)
+
+
+### Features
+
+* **movie-list:** add section dropdown ([c2aaa87](https://github.com/sozonome/muvees-flutter/commit/c2aaa87a19d8585ab22ce472a28b5514a4bf4779))
+
 ### [1.1.1](https://github.com/sozonome/muvees-flutter/compare/v1.1.0-build5-debug...v1.1.1) (2023-05-16)
 
 ## [1.1.0](https://github.com/sozonome/muvees-flutter/compare/v1.0.2...v1.1.0) (2023-01-13)
