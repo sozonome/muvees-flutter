@@ -34,7 +34,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace "com.example.flutter_application_1"
+    namespace "dev.sznm.muvees.mobile"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 

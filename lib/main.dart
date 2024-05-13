@@ -7,6 +7,8 @@ import 'package:loggy/loggy.dart';
 import 'package:muvees/core/config/routes/router.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
   GoogleFonts.config.allowRuntimeFetching = false;
   Loggy.initLoggy(
     logPrinter: StreamPrinter(
